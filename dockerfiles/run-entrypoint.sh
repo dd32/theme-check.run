@@ -9,8 +9,7 @@ DOCKER_HOST="unix:///var/run/docker.sock"
 # Wait for boot
 sleep 5
 
-# Run command.
-#$@
+# Run it.
 cd /theme-review-action
 npm run start
 
