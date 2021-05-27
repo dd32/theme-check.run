@@ -1,7 +1,9 @@
 #!/bin/sh
-
 # This is a dockerfile, but a script file.. because.. I could.. but also because..
 # .. the build process needs to use `--privileged` which isn't available during `docker build`.
+
+# make sure we're in the right working directory.
+cd "$(dirname "$0")"
 
 # Cleanup
 docker kill runner_build_tmp
@@ -31,8 +33,7 @@ docker exec -w /theme-review-action runner_build_tmp npm install
 # Testing only.
 docker exec runner_build_tmp svn export https://themes.svn.wordpress.org/twentyten/3.3/ /theme-review-action/test-theme
 
+# Stop the container, tag it, cleanup.
 docker stop runner_build_tmp
-
 docker commit runner_build_tmp runner:latest
-
 docker rm runner_build_tmp
