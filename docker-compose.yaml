@@ -37,3 +37,9 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./www:/var/www/html
       - ./bin:/var/www/html/bin
+  runner:
+    build:
+      context: dockerfiles
+      dockerfile: run
+    image: runner
+    restart: never

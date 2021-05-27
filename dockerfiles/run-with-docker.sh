@@ -10,7 +10,9 @@ DOCKER_HOST="unix:///var/run/docker.sock"
 sleep 5
 
 # Run command.
-$@
+#$@
+cd /theme-review-action
+npm run start
 
 # Shut down docker
 sleep 1
