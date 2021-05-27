@@ -1,0 +1,5 @@
+# syntax = edrevo/dockerfile-plus
+
+INCLUDE+ php
+
+RUN apk update && apk add --no-cache docker-cli git subversion

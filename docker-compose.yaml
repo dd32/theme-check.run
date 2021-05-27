@@ -1,0 +1,39 @@
+version: '3.1'
+services:
+  nginx:
+    image: nginx:alpine
+    restart: always
+    ports:
+     - "80:80"
+     - "443:443"
+    volumes:
+     - ./nginx:/etc/nginx/conf.d
+     - ./www:/var/www/html
+  db:
+    image: mariadb
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: tc
+    volumes:
+     - ./mysql-data:/var/lib/mysql
+  php:
+    build:
+      context: dockerfiles
+      dockerfile: php
+    restart: always
+    volumes:
+     - ./php/zz-overrides.ini:/usr/local/etc/php/conf.d/zz-overrides.ini
+     - ./www:/var/www/html
+  manager:
+    build:
+      context: dockerfiles
+      dockerfile: manager
+    restart: always
+    command: [ "php", "/var/www/html/bin/manager.php", "1>&2" ]
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./www:/var/www/html
+      - ./bin:/var/www/html/bin
