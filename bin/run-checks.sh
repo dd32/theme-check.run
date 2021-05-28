@@ -11,17 +11,26 @@ fi
 
 echo Running $ID
 
-mkdir -p ./shared-data/$ID/logs
+DATAFOLDER=`pwd`/shared-data/$ID
+
+mkdir -p "$DATAFOLDER/logs"
 
 # Testing.
 svn export --force https://themes.svn.wordpress.org/twentyten/3.3/ ./shared-data/$ID/test-theme
 
-docker run \
-	--rm -ti \
-	-v /var/run/docker.sock:/var/run/docker.sock \
-	-v `pwd`/shared-data/:`pwd`/shared-data/ \
-	-v `pwd`/shared-data/.npm:$HOME/.npm \
-	-v $HOME/.wp-env:$HOME/.wp-env \
-	runner `pwd` $ID $HOME
+cd $DATAFOLDER
 
-echo FIN
+git clone -q https://github.com/WordPress/theme-review-action.git theme-review-action
+
+cd $DATAFOLDER/theme-review-action
+
+PORT=$( shuf -i 5000-65000 -n 1 )
+
+npm install
+# npm run start --skipFolderCopy --pathToTheme=../test-theme --port $PORT
+node bin/program.js --skipFolderCopy --pathToTheme=../test-theme --port $PORT
+
+cd $DATAFOLDER
+
+mv $DATAFOLDER/theme-review-action/logs/* $DATAFOLDER/logs/
+rm -rf $DATAFOLDER/theme-review-action
