@@ -15,6 +15,7 @@ if ( ! $id || ! $run ) {
 
 
 printf( '<strong>Requested:</strong> %s<br>', $run['time'] );
+printf( '<strong>Theme:</strong> %s<br>', json_decode( $run['meta'] )->theme );
 printf( '<strong>Status:</strong> %s<br>', $run['status'] );
 printf( '<strong>Last Update:</strong> %s<br>', $run['last_seen'] );
 if ( 'finished' != $run['status'] ) {

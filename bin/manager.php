@@ -71,7 +71,7 @@ function maybe_start_run() {
 
 	$process = proc_open(
 		__DIR__ . "/run-checks.sh " .
-			$row['id'] . ' ' .
+			$row['hash'] . ' ' .
 			json_decode( $row['meta'] )->theme .
 			' 2>&1',
 		[
