@@ -1,10 +1,10 @@
 #!/bin/sh
 
+echo Image built: `cat /.builddate`
+
 # Start docker
 dockerd </dev/null &>/dev/null &
 PID=$!
-
-DOCKER_HOST="unix:///var/run/docker.sock"
 
 # Wait for boot
 sleep 5

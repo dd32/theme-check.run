@@ -7,8 +7,8 @@
 
 ## To run & update
  - `git clone https://github.com/dd32/theme-check.run`
- - `dockerfiles/build-runner.sh`
  - `docker-compose up -d`
+ - `dockerfiles/build-runner.sh`
  - Visit `http://hostname/`
 
 ## To run a test against the theme
