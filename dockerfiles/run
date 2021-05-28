@@ -1,0 +1,7 @@
+FROM node:current-alpine
+
+RUN apk update && apk add --no-cache docker-cli git subversion curl docker-compose
+
+COPY dockerfiles/run-entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT [ "/entrypoint.sh" ]
