@@ -1,4 +1,3 @@
 FROM php:fpm-alpine
 
-RUN docker-php-ext-install -j$(nproc) mysqli && \
-	docker-php-ext-install -j$(nproc) pdo_mysql
+RUN docker-php-ext-install -j$(nproc) pdo_mysql
