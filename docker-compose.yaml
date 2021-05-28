@@ -9,6 +9,11 @@ services:
     volumes:
      - ./nginx:/etc/nginx/conf.d
      - ./www:/var/www/html
+  registry:
+    image: registry
+    restart: always
+    volumes:
+     - ./registry/config.yml:/etc/docker/registry/config.yml
   db:
     image: mariadb
     restart: always
