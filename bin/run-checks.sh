@@ -9,6 +9,12 @@ if [ -z "$ID" ]; then
 	exit 1;
 fi
 
+function cleanup() {
+	rm -rf $DATAFOLDER/theme-review-action
+	# Docker cleanup?
+}
+trap cleanup EXIT
+
 echo Running $ID
 
 DATAFOLDER=`pwd`/shared-data/$ID
@@ -30,7 +36,6 @@ npm install
 # npm run start --skipFolderCopy --pathToTheme=../test-theme --port $PORT
 node bin/program.js --skipFolderCopy --pathToTheme=../test-theme --port $PORT
 
-cd $DATAFOLDER
-
+# Move logs
 mv $DATAFOLDER/theme-review-action/logs/* $DATAFOLDER/logs/
-rm -rf $DATAFOLDER/theme-review-action
+
