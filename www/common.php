@@ -1,6 +1,9 @@
 <?php
-
-$pdo = new PDO( 'mysql:dbname=tc;host=db', 'root', 'root' );
+try {
+	$pdo = new PDO( 'mysql:dbname=tc;host=db', 'root', 'root' );
+} catch( Exception $e ) {
+	$pdo = new PDO( 'mysql:dbname=tc;host=127.0.0.1', 'root', 'root' );
+}
 
 // Lazy mans "PDO is too complicated" DB row fetcher.
 function fetch_row( $sql, $params = null ) {

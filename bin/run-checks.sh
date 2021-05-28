@@ -8,6 +8,10 @@ if [ -z "$ID" ]; then
 	echo No hash provided?
 	exit 1;
 fi
+SVN=$2
+if [ -z "$SVN" ]; then
+	echo No SVN directory provided
+fi
 
 function cleanup() {
 	rm -rf $DATAFOLDER/theme-review-action
@@ -15,14 +19,14 @@ function cleanup() {
 }
 trap cleanup EXIT
 
-echo Running $ID
+echo Running job $ID
 
 DATAFOLDER=`pwd`/shared-data/$ID
 
 mkdir -p "$DATAFOLDER/logs"
 
 # Testing.
-svn export --force https://themes.svn.wordpress.org/twentyten/3.3/ ./shared-data/$ID/test-theme
+svn export --force --quiet $SVN ./shared-data/$ID/test-theme
 
 cd $DATAFOLDER
 
@@ -32,10 +36,11 @@ cd $DATAFOLDER/theme-review-action
 
 PORT=$( shuf -i 5000-65000 -n 1 )
 
-npm install
+npm install 2>&1 1>/dev/null
 # npm run start --skipFolderCopy --pathToTheme=../test-theme --port $PORT
 node bin/program.js --skipFolderCopy --pathToTheme=../test-theme --port $PORT
 
 # Move logs
 mv $DATAFOLDER/theme-review-action/logs/* $DATAFOLDER/logs/
 
+cat $DATAFOLDER/logs/*
