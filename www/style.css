@@ -119,7 +119,8 @@ input[type=submit]:focus {
 }
 
 #theme {
-	margin-right: 4px
+	margin-right: 4px;
+	width: 300px;
 }
 
 #run {
