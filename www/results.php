@@ -15,9 +15,8 @@ if ( ! $id || ! $run ) {
 
 
 printf( '<strong>Requested:</strong> %s<br>', $run['time'] );
-printf( '<strong>Theme:</strong> %s<br>', json_decode( $run['meta'] )->theme );
 printf( '<strong>Status:</strong> %s<br>', $run['status'] );
-printf( '<strong>Last Update:</strong> %s<br>', $run['last_seen'] );
+printf( '<strong>Last Output:</strong> %s<br>', $run['last_seen'] );
 if ( 'finished' != $run['status'] ) {
 	$elapsed = time() - strtotime( $run['time'] );
 	echo '<meta http-equiv="refresh" content="1;url=?id=' . $id . '#end" />';

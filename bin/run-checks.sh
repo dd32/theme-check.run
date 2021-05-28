@@ -20,6 +20,7 @@ function cleanup() {
 trap cleanup EXIT
 
 echo Running job $ID
+echo Testing against $SVN
 
 DATAFOLDER=`pwd`/shared-data/$ID
 
