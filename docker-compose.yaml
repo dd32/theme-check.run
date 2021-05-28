@@ -9,11 +9,6 @@ services:
     volumes:
      - ./nginx:/etc/nginx/conf.d
      - ./www:/var/www/html
-  registry:
-    image: registry
-    restart: always
-    volumes:
-     - ./registry/config.yml:/etc/docker/registry/config.yml
   db:
     image: mariadb
     restart: always
@@ -35,7 +30,7 @@ services:
   manager:
     build:
       context: dockerfiles
-      dockerfile: manager
+      dockerfile: php
     restart: always
     command: [ "php", "/var/www/html/bin/manager.php", "1>&2" ]
     volumes:
