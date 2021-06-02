@@ -2,8 +2,10 @@
 
 ## Requirements
  - Debian VM
+ - User Namespacing enabled, se https://github.com/puppeteer/puppeteer/blob/main/docs/troubleshooting.md#recommended-enable-user-namespace-cloning
+ - Chromium installed, to install the dependancies Chromium in puppeteer will require
  - Docker
- - Node v12+, via nvm?
+ - Node v14, via nvm
  - PHP CLI with PDO support
  - SVN
  - GIT
