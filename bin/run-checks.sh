@@ -44,4 +44,4 @@ node bin/program.js --skipFolderCopy --pathToTheme=../test-theme --port $PORT
 # Move logs
 mv $DATAFOLDER/theme-review-action/logs/* $DATAFOLDER/logs/
 
-cat $DATAFOLDER/logs/*
+ls $DATAFOLDER/logs/* | xargs -I% sh -c 'echo ***`basename %`***: && cat %'
