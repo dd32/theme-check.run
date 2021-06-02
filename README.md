@@ -7,11 +7,13 @@
  - Docker
  - Node v14, via nvm
  - PHP CLI with PDO support
+ - Composer
  - SVN
  - GIT
 
 ## To run & update
  - `git clone https://github.com/dd32/theme-check.run .`
+ - `cd www && composer install`
  - `docker-compose up -d`
  - `screen php bin/manager.php`
  - Visit `http://hostname/`

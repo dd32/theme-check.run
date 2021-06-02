@@ -1,6 +1,8 @@
 <?php
+use SensioLabs\AnsiConverter\AnsiToHtmlConverter;
 
-include __DIR__ . '/common.php';
+require __DIR__ . '/common.php';
+require __DIR__ . '/vendor/autoload.php';
 
 $id = $_REQUEST['id'] ?? false;
 
@@ -33,6 +35,11 @@ if ( 'finished' != $run['status'] ) {
 }
 printf( '<strong>Elapsed:</strong> %ss<br>', $elapsed );
 
-echo '<textarea style="width:100%; height:90%">';
-echo htmlentities( $run['results'] );
-echo '</textarea>';
+echo '<pre style="background-color: black; overflow: auto; padding: 10px 15px; font-family: monospace; min-height: 40em;">';
+
+$output    = $run['results']; // htmlentities( , ENT_COMPAT | ENT_NOQUOTES );
+$converter = new AnsiToHtmlConverter();
+$html      = $converter->convert( $output );
+echo $html;
+
+echo '</pre>';
