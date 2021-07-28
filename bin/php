@@ -12,4 +12,4 @@ docker run \
     --env-file=.env \
     --network=theme-check-run \
     "$IMAGE_NAME" \
-        vendor/bin/phinx "$@"
+        php "$@"
