@@ -13,6 +13,7 @@
 
 ## To run & update
  - `git clone https://github.com/dd32/theme-check.run .`
+ - `touch .env`
  - `composer install`
  - `docker-compose up -d`
  - `screen php bin/manager.php`

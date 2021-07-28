@@ -16,11 +16,11 @@ services:
     restart: always
     ports:
       - "3306:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: tc
     volumes:
       - database:/var/lib/mysql
+    env_file:
+      - .env.dist
+      - .env
 
   php:
     build:
@@ -30,6 +30,9 @@ services:
     volumes:
       - ./php/zz-overrides.ini:/usr/local/etc/php/conf.d/zz-overrides.ini
       - ./www:/var/www/html
+    env_file:
+      - .env.dist
+      - .env
 
 volumes:
   database:
