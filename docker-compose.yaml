@@ -32,7 +32,6 @@ services:
       dockerfile: php
     restart: always
     volumes:
-      - ./php/zz-overrides.ini:/usr/local/etc/php/conf.d/zz-overrides.ini
       - ./www:/var/www/html
     env_file:
       - .env.dist
