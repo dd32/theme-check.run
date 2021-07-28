@@ -17,7 +17,7 @@
  - `composer install`
  - `docker-compose up -d`
  - `bin/migrations-development migrate`
- - `screen bin/php bin/manager.php`
+ - `DATABASE_HOST=127.0.0.1 php bin/manager.php`
  - Visit `http://hostname/`
 
 # Containers

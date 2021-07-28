@@ -30,7 +30,7 @@ function drain_pipes() {
 			$process['stdout'] .= $data;
 			$read_data = true;
 		}
-	
+
 		while ( $data = fread( $process['pipes'][2], 1024 ) ) {
 			$process['stderr'] .= $data;
 			$read_data = true;
@@ -42,7 +42,7 @@ function drain_pipes() {
 
 		$process['status'] = proc_get_status( $process['process'] );
 
-		$output = ''; 
+		$output = '';
 		if ( $process['stdout'] || $process['stderr'] ) {
 			$output = trim( $process['stdout'] . "\n\n" . $process['stderr'] );
 		}
