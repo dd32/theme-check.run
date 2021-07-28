@@ -37,3 +37,7 @@ services:
 
 volumes:
   database:
+
+networks:
+  default:
+      name: theme-check-run
