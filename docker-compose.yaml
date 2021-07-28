@@ -1,14 +1,16 @@
 version: '3.1'
+
 services:
   nginx:
     image: nginx:alpine
     restart: always
     ports:
-     - "80:80"
-     - "443:443"
+      - "80:80"
+      - "443:443"
     volumes:
-     - ./nginx:/etc/nginx/conf.d
-     - ./www:/var/www/html
+      - ./nginx:/etc/nginx/conf.d
+      - ./www:/var/www/html
+
   db:
     image: mariadb
     restart: always
@@ -18,12 +20,13 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: tc
     volumes:
-     - ./mysql-data:/var/lib/mysql
+      - ./mysql-data:/var/lib/mysql
+
   php:
     build:
       context: dockerfiles
       dockerfile: php
     restart: always
     volumes:
-     - ./php/zz-overrides.ini:/usr/local/etc/php/conf.d/zz-overrides.ini
-     - ./www:/var/www/html
+      - ./php/zz-overrides.ini:/usr/local/etc/php/conf.d/zz-overrides.ini
+      - ./www:/var/www/html
