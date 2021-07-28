@@ -16,6 +16,7 @@
  - `touch .env`
  - `composer install`
  - `docker-compose up -d`
+ - `bin/migrations-development.sh migrate`
  - `screen php bin/manager.php`
  - Visit `http://hostname/`
 
