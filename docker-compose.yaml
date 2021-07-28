@@ -10,7 +10,7 @@ services:
       - "443:443"
     volumes:
       - ./nginx:/etc/nginx/conf.d
-      - ./www:/var/www/html
+      - .:/app
 
   db:
     image: mysql:8
@@ -32,7 +32,7 @@ services:
       dockerfile: php
     restart: always
     volumes:
-      - ./www:/var/www/html
+      - .:/app
     env_file:
       - .env.dist
       - .env
