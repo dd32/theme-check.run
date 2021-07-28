@@ -20,7 +20,7 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: tc
     volumes:
-      - ./mysql-data:/var/lib/mysql
+      - database:/var/lib/mysql
 
   php:
     build:
@@ -30,3 +30,6 @@ services:
     volumes:
       - ./php/zz-overrides.ini:/usr/local/etc/php/conf.d/zz-overrides.ini
       - ./www:/var/www/html
+
+volumes:
+  database:
