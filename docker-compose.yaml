@@ -23,6 +23,7 @@ services:
       - .env
 
   php:
+    image: theme-check-run-php
     build:
       context: dockerfiles
       dockerfile: php
