@@ -13,7 +13,14 @@ $database_name = $_ENV['DATABASE_NAME'];
 $database_user = $_ENV['DATABASE_USER'];
 $database_pass = $_ENV['DATABASE_PASS'];
 
-$pdo = new PDO( "mysql:dbname=$database_name;host=$database_host;port=$database_port", $database_user, $database_pass );
+$pdo = new PDO(
+    "mysql:dbname=$database_name;host=$database_host;port=$database_port",
+    $database_user,
+    $database_pass,
+    [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    ]
+);
 
 // Lazy mans "PDO is too complicated" DB row fetcher.
 function fetch_row( $sql, $params = null ) {
