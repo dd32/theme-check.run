@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# This script must be executed from the production machine!
+
+if [ -f .env ]
+then
+  set -o allexport; source .env; set +o allexport
+fi
+
+read -p "This will run migrations against the production database. Are you sure you want to proceed? (y/n) " -n 1 -r
+echo # move to a new line
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    php vendor/bin/phinx migrate
+fi
