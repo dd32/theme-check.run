@@ -35,6 +35,9 @@ git clone -q https://github.com/WordPress/theme-review-action.git theme-review-a
 
 cd $DATAFOLDER/theme-review-action
 
+git pull
+git checkout run_themechecks_against_theme
+
 PORT=$( shuf -i 5000-65000 -n 1 )
 
 npm install 2>&1 1>/dev/null
