@@ -23,8 +23,8 @@ mkdir -p "$WORKING_DIR/logs"
 cd "$WORKING_DIR" || exit
 
 function cleanup() {
-	rm -rf "$WORKING_DIR/theme-review-action"
-	# Docker cleanup?
+  echo "Cleaning up"
+  # Docker cleanup?
 }
 trap cleanup EXIT
 
@@ -42,8 +42,3 @@ git checkout run_themechecks_against_theme
 PORT=$( shuf -i 5000-65000 -n 1 )
 # npm run start --skipFolderCopy --pathToTheme=../test-theme --port $PORT
 node bin/program.js --skipFolderCopy --pathToTheme=../test-theme --port $PORT
-
-# Move logs
-mv $WORKING_DIR/theme-review-action/logs/* $WORKING_DIR/logs/
-
-ls $WORKING_DIR/logs/* | xargs -I% sh -c 'echo ***`basename %`***: && cat %'
