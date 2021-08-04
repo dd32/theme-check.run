@@ -18,7 +18,7 @@
  - `docker-compose up -d`
  - `bin/migrations-development migrate`
  - `DATABASE_HOST=127.0.0.1 php bin/manager.php`
- - Visit `http://hostname/`
+ - Visit `http://localhost`
 
 # Containers
 ## nginx
