@@ -17,15 +17,16 @@ fi
 echo "Running job $ID"
 echo "Testing against $SVN"
 
+# Prepare and enter working directory.
 DATA_DIR="$(pwd)/shared-data/$ID"
+mkdir -p "$DATA_DIR/logs"
+cd "$DATA_DIR" || exit
 
 function cleanup() {
 	rm -rf $DATA_DIR/theme-review-action
 	# Docker cleanup?
 }
 trap cleanup EXIT
-
-mkdir -p "$DATA_DIR/logs"
 
 # Testing.
 svn export --force --quiet $SVN ./shared-data/$ID/test-theme
