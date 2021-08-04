@@ -22,7 +22,6 @@ services:
     volumes:
       - database:/var/lib/mysql
     env_file:
-      - .env.dist
       - .env
 
   php:
@@ -35,7 +34,6 @@ services:
     volumes:
       - .:/app
     env_file:
-      - .env.dist
       - .env
 
 volumes:
