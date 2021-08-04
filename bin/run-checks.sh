@@ -19,7 +19,7 @@ echo "Testing against $SVN"
 
 # Prepare and enter working directory.
 WORKING_DIR="$(pwd)/shared-data/$ID"
-mkdir -p "$WORKING_DIR/logs"
+mkdir -p "$WORKING_DIR"
 cd "$WORKING_DIR" || exit
 
 function cleanup() {
