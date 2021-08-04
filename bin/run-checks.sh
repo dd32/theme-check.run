@@ -38,7 +38,8 @@ git pull
 git checkout run_themechecks_against_theme
 
 # Install theme-review-action dependencies.
-{ npm ci >/dev/null; } 2>&1
+rm package-lock.json
+{ npm install >/dev/null; } 2>&1
 
 # Run theme-review-action.
 PORT=$(shuf -i 5000-65000 -n 1)
