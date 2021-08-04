@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# make sure we're in the right working directory.
-cd "$(dirname $(dirname "$0") )"
+# Make sure we're in the right working directory.
+cd "$(dirname "$(dirname "$0")")" || exit
 
 ID=$1
 if [ -z "$ID" ]; then
