@@ -13,16 +13,16 @@ if [ -z "$SVN" ]; then
 	echo No SVN directory provided
 fi
 
+echo Running job $ID
+echo Testing against $SVN
+
+DATAFOLDER=`pwd`/shared-data/$ID
+
 function cleanup() {
 	rm -rf $DATAFOLDER/theme-review-action
 	# Docker cleanup?
 }
 trap cleanup EXIT
-
-echo Running job $ID
-echo Testing against $SVN
-
-DATAFOLDER=`pwd`/shared-data/$ID
 
 mkdir -p "$DATAFOLDER/logs"
 
