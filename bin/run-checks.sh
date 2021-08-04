@@ -28,11 +28,8 @@ function cleanup() {
 }
 trap cleanup EXIT
 
-# Testing.
-svn export --force --quiet $SVN ./shared-data/$ID/test-theme
-
-cd "$WORKING_DIR" || exit
-
+# Checkout theme under test, and theme-review-action.
+svn export --force --quiet "$SVN" test-theme
 git clone -q https://github.com/WordPress/theme-review-action.git theme-review-action
 
 cd "$WORKING_DIR/theme-review-action" || exit
