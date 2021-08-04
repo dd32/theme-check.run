@@ -25,6 +25,7 @@ cd "$WORKING_DIR" || exit
 function cleanup() {
   echo "Cleaning up"
   # Docker cleanup?
+  echo "Cleanup done"
 }
 trap cleanup EXIT
 
