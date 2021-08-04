@@ -18,12 +18,12 @@ echo "Running job $ID"
 echo "Testing against $SVN"
 
 # Prepare and enter working directory.
-DATA_DIR="$(pwd)/shared-data/$ID"
-mkdir -p "$DATA_DIR/logs"
-cd "$DATA_DIR" || exit
+WORKING_DIR="$(pwd)/shared-data/$ID"
+mkdir -p "$WORKING_DIR/logs"
+cd "$WORKING_DIR" || exit
 
 function cleanup() {
-	rm -rf $DATA_DIR/theme-review-action
+	rm -rf "$WORKING_DIR/theme-review-action"
 	# Docker cleanup?
 }
 trap cleanup EXIT
@@ -31,11 +31,11 @@ trap cleanup EXIT
 # Testing.
 svn export --force --quiet $SVN ./shared-data/$ID/test-theme
 
-cd $DATA_DIR
+cd "$WORKING_DIR" || exit
 
 git clone -q https://github.com/WordPress/theme-review-action.git theme-review-action
 
-cd $DATA_DIR/theme-review-action
+cd "$WORKING_DIR/theme-review-action" || exit
 
 git pull
 git checkout run_themechecks_against_theme
@@ -47,6 +47,6 @@ npm install 2>&1 1>/dev/null
 node bin/program.js --skipFolderCopy --pathToTheme=../test-theme --port $PORT
 
 # Move logs
-mv $DATA_DIR/theme-review-action/logs/* $DATA_DIR/logs/
+mv $WORKING_DIR/theme-review-action/logs/* $WORKING_DIR/logs/
 
-ls $DATA_DIR/logs/* | xargs -I% sh -c 'echo ***`basename %`***: && cat %'
+ls $WORKING_DIR/logs/* | xargs -I% sh -c 'echo ***`basename %`***: && cat %'
