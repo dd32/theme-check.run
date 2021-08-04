@@ -14,8 +14,8 @@ if [ -z "$SVN" ]; then
 	exit 1
 fi
 
-echo Running job $ID
-echo Testing against $SVN
+echo "Running job $ID"
+echo "Testing against $SVN"
 
 DATAFOLDER=`pwd`/shared-data/$ID
 
