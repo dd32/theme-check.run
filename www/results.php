@@ -2,7 +2,7 @@
 use SensioLabs\AnsiConverter\AnsiToHtmlConverter;
 
 require __DIR__ . '/common.php';
-require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 $id = $_REQUEST['id'] ?? false;
 

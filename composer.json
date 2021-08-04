@@ -1,0 +1,9 @@
+{
+    "require": {
+        "sensiolabs/ansi-to-html": "^1.2",
+        "vlucas/phpdotenv": "^5.3"
+    },
+    "require-dev": {
+        "robmorgan/phinx": "^0.12.7"
+    }
+}

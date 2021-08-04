@@ -13,9 +13,11 @@
 
 ## To run & update
  - `git clone https://github.com/dd32/theme-check.run .`
- - `cd www && composer install`
+ - `cp .env.dist .env`
+ - `composer install`
  - `docker-compose up -d`
- - `screen php bin/manager.php`
+ - `bin/migrations-development migrate`
+ - `DATABASE_HOST=127.0.0.1 php bin/manager.php`
  - Visit `http://hostname/`
 
 # Containers
@@ -25,7 +27,6 @@
  The PHP execution container for the web front end
 ## db
  A database host used for communication between php and manager
-
 
 # Bin Scripts
 ## manager.php

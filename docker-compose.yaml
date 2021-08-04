@@ -1,29 +1,46 @@
 version: '3.1'
+
 services:
   nginx:
     image: nginx:alpine
+    container_name: theme-check-run-nginx
     restart: always
     ports:
-     - "80:80"
-     - "443:443"
+      - "80:80"
+      - "443:443"
     volumes:
-     - ./nginx:/etc/nginx/conf.d
-     - ./www:/var/www/html
+      - ./nginx:/etc/nginx/conf.d
+      - .:/app
+
   db:
-    image: mariadb
+    image: mysql:8
+    container_name: theme-check-run-db
+    command: --default-authentication-plugin=mysql_native_password
     restart: always
     ports:
       - "3306:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: tc
     volumes:
-     - ./mysql-data:/var/lib/mysql
+      - database:/var/lib/mysql
+    env_file:
+      - .env.dist
+      - .env
+
   php:
+    image: theme-check-run-php
+    container_name: theme-check-run-php
     build:
       context: dockerfiles
       dockerfile: php
     restart: always
     volumes:
-     - ./php/zz-overrides.ini:/usr/local/etc/php/conf.d/zz-overrides.ini
-     - ./www:/var/www/html
+      - .:/app
+    env_file:
+      - .env.dist
+      - .env
+
+volumes:
+  database:
+
+networks:
+  default:
+      name: theme-check-run
