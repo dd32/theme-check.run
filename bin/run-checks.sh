@@ -5,12 +5,13 @@ cd "$(dirname "$(dirname "$0")")" || exit
 
 ID=$1
 if [ -z "$ID" ]; then
-	echo No hash provided?
-	exit 1;
+	echo No hash provided
+	exit 1
 fi
 SVN=$2
 if [ -z "$SVN" ]; then
 	echo No SVN directory provided
+	exit 1
 fi
 
 echo Running job $ID
