@@ -17,24 +17,24 @@ fi
 echo "Running job $ID"
 echo "Testing against $SVN"
 
-DATAFOLDER=`pwd`/shared-data/$ID
+DATA_DIR="$(pwd)/shared-data/$ID"
 
 function cleanup() {
-	rm -rf $DATAFOLDER/theme-review-action
+	rm -rf $DATA_DIR/theme-review-action
 	# Docker cleanup?
 }
 trap cleanup EXIT
 
-mkdir -p "$DATAFOLDER/logs"
+mkdir -p "$DATA_DIR/logs"
 
 # Testing.
 svn export --force --quiet $SVN ./shared-data/$ID/test-theme
 
-cd $DATAFOLDER
+cd $DATA_DIR
 
 git clone -q https://github.com/WordPress/theme-review-action.git theme-review-action
 
-cd $DATAFOLDER/theme-review-action
+cd $DATA_DIR/theme-review-action
 
 git pull
 git checkout run_themechecks_against_theme
@@ -46,6 +46,6 @@ npm install 2>&1 1>/dev/null
 node bin/program.js --skipFolderCopy --pathToTheme=../test-theme --port $PORT
 
 # Move logs
-mv $DATAFOLDER/theme-review-action/logs/* $DATAFOLDER/logs/
+mv $DATA_DIR/theme-review-action/logs/* $DATA_DIR/logs/
 
-ls $DATAFOLDER/logs/* | xargs -I% sh -c 'echo ***`basename %`***: && cat %'
+ls $DATA_DIR/logs/* | xargs -I% sh -c 'echo ***`basename %`***: && cat %'
