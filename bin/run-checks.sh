@@ -35,9 +35,6 @@ git clone -q https://github.com/WordPress/theme-review-action.git theme-review-a
 
 cd "$WORKING_DIR/theme-review-action" || exit
 
-git pull
-git checkout run_themechecks_against_theme
-
 # Install theme-review-action dependencies.
 rm package-lock.json
 { npm install >/dev/null; } 2>&1
