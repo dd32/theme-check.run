@@ -34,9 +34,10 @@ svn export --force --quiet "$SVN" test-theme
 git clone -q https://github.com/WordPress/theme-review-action.git theme-review-action
 
 cd "$WORKING_DIR/theme-review-action" || exit
+git checkout update-ui-check-dependencies
 
 # Install theme-review-action dependencies.
-rm package-lock.json
+rm package-lock.json actions/ui-check/package-lock.json
 { npm install >/dev/null; } 2>&1
 
 # Run theme-review-action.
