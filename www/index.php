@@ -11,7 +11,7 @@
 		<form id="test" action="/create.php" method="POST">
 			<label for="theme">Theme:</label>
 			<div id="createFields">
-				<input name="theme" id="theme" type="text" required value="https://themes.svn.wordpress.org/twentyten/3.3/">
+				<input name="theme" id="theme" type="text" required value="https://themes.svn.wordpress.org/twentytwentyone/1.4/">
 				<input type="submit" value="Test">
 			</div>
 			<p>For now, the only supported input is a full SVN URL.</p>
