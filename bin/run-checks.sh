@@ -1,7 +1,10 @@
 #!/bin/bash
 
+# Bail when an error occurs
+set -e
+
 # Make sure we're in the right working directory.
-cd "$(dirname "$(dirname "$0")")" || exit
+cd "$(dirname "$(dirname "$0")")"
 
 ID=$1
 if [ -z "$ID" ]; then
@@ -20,7 +23,7 @@ echo "Testing against $SVN"
 # Prepare and enter working directory.
 WORKING_DIR="$(pwd)/shared-data/$ID"
 mkdir -p "$WORKING_DIR"
-cd "$WORKING_DIR" || exit
+cd "$WORKING_DIR"
 
 function cleanup() {
   echo "Cleaning up"
@@ -35,7 +38,7 @@ trap cleanup EXIT
 svn export --force --quiet "$SVN" test-theme
 git clone -q https://github.com/WordPress/theme-review-action.git theme-review-action
 
-cd "$WORKING_DIR/theme-review-action" || exit
+cd "$WORKING_DIR/theme-review-action"
 
 # Install theme-review-action dependencies.
 rm package-lock.json actions/ui-check/package-lock.json
