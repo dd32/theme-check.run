@@ -24,7 +24,9 @@ cd "$WORKING_DIR" || exit
 
 function cleanup() {
   echo "Cleaning up"
-  # Docker cleanup?
+  # Really make sure wp-env is destroyed.
+  # theme-review-action should destroy it, but in case of error, it might not.
+  npm run wp-env destroy
   echo "Cleanup done"
 }
 trap cleanup EXIT
